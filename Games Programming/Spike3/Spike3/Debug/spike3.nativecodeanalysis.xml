@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>d:\games programming\spike3\spike3\</FILEPATH>
+      <FILENAME>spike3.cpp</FILENAME>
+      <LINE>272</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>6001</DEFECTCODE>
+    <DESCRIPTION>Using uninitialized memory 'L'.</DESCRIPTION>
+    <FUNCTION>main</FUNCTION>
+    <DECORATED>main</DECORATED>
+    <FUNCLINE>260</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>d:\games programming\spike3\spike3\</FILEPATH>
+        <FILENAME>spike3.cpp</FILENAME>
+        <LINE>261</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\games programming\spike3\spike3\</FILEPATH>
+        <FILENAME>spike3.cpp</FILENAME>
+        <LINE>262</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\games programming\spike3\spike3\</FILEPATH>
+        <FILENAME>spike3.cpp</FILENAME>
+        <LINE>263</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\games programming\spike3\spike3\</FILEPATH>
+        <FILENAME>spike3.cpp</FILENAME>
+        <LINE>264</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\games programming\spike3\spike3\</FILEPATH>
+        <FILENAME>spike3.cpp</FILENAME>
+        <LINE>265</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\games programming\spike3\spike3\</FILEPATH>
+        <FILENAME>spike3.cpp</FILENAME>
+        <LINE>266</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\games programming\spike3\spike3\</FILEPATH>
+        <FILENAME>spike3.cpp</FILENAME>
+        <LINE>268</LINE>
+        <COLUMN>28</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'L' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\games programming\spike3\spike3\</FILEPATH>
+        <FILENAME>spike3.cpp</FILENAME>
+        <LINE>272</LINE>
+        <COLUMN>11</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>'L' is an Output from 'DoubleLinkedList&lt;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt; &gt;::append' (declared on line 176)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\games programming\spike3\spike3\</FILEPATH>
+        <FILENAME>spike3.cpp</FILENAME>
+        <LINE>272</LINE>
+        <COLUMN>11</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'L' is used, but may not have been initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>
