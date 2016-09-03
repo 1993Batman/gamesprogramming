@@ -29,7 +29,7 @@ void GameController::mainMenu() {
 				highScore->hof();
 				break;
 			case '3':
-				cout << "valid move" << endl;
+				help->printHelp();
 				break;
 			case '4':
 				about->printAbout();
