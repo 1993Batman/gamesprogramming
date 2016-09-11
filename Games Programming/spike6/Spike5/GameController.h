@@ -1,8 +1,6 @@
 #pragma once
-#include "About.h"
-#include "Help.h"
-#include "HighScore.h"
-#include "SelectAdventure.h"
+#include "Player.h"
+#include "Inventory.h"
 
 class GameController
 {
@@ -11,12 +9,10 @@ public:
 	~GameController();
 	void mainMenu();
 	void printMenu();
+	void testInventory();
 private:
 	string move;
-	About* about;
-	Help* help;
-	HighScore* highScore;
-	SelectAdventure* adventure;
+	Player* player;
 };
 
 
