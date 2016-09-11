@@ -65,7 +65,44 @@ void GameController::testInventory() {
 	player->AddItem(*item5);
 	
 	cout << "I just added these to the inventory"<< endl;
-	player->ShowItems;
+	player->ShowItems();
+	cout << "What item do you wish to delete?" << endl;
+	bool correct = false;
+	while (!correct) {
+		cout << "Select 1-5" << endl;
+		cin >> move;
+		switch (move[0])
+		{
+		case '1': 
+			player->RemoveItem(*item1);
+			correct = !correct;
+			break; 
+		case '2': 
+			player->RemoveItem(*item2);
+			correct = !correct;
+			break; 
+		case '3': 
+			player->RemoveItem(*item3);
+			correct = !correct;
+			break; 
+		case '4': 
+			player->RemoveItem(*item4);
+			correct = !correct;
+			break; 
+		case '5':
+			player->RemoveItem(*item5);
+			correct = !correct;
+			break;
+		default:
+			if (move == "1" || move == "2" || move == "3" || move == "4" || move == "5") {
 
-	
+			}
+			else {
+				cout << "invalid move" << endl;
+			}
+			break;
+		}
+	}	
+
+	player->ShowItems();
 }

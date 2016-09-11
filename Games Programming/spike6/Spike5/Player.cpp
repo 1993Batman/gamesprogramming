@@ -19,8 +19,8 @@ void Player::RemoveItem(Inventory item) {
 	
 
 	for (int i = 0; i < int(inventory->size()); i++) {
-		string test = inventory->at(i).ReturnName;
-		if (!test.compare(item.ReturnName)) {
+		string test = inventory->at(i).ReturnName();
+		if (!test.compare(item.ReturnName())) {
 			inventory->erase((it +i));
 		}
 	}
@@ -29,7 +29,7 @@ void Player::RemoveItem(Inventory item) {
 
 void Player::ShowItems() {
 	for (int i = 0; i < int(inventory->size()); i++) {
-		cout << "1. " << inventory->at(i).ReturnName << " : " << inventory->at(i).ReturnType << endl;
-		cout << inventory->at(i).ReturnDesc << endl;
+		cout << i + 1<<". " << inventory->at(i).ReturnName() << " : " << inventory->at(i).ReturnType() << endl;
+		cout << inventory->at(i).ReturnDesc() << endl<< endl;
 	}
 }
