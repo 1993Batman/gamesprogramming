@@ -1,6 +1,5 @@
 #pragma once
 #include "Inventory.h"
-#include <list>
 #include <vector>
 
 class Player

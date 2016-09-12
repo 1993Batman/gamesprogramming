@@ -128,8 +128,6 @@ int main()
 		input();
 		update();
 		render();
-		//playermove = NULL;
-
 		if (_map[PlayerPosY][PlayerPosX] == "G") {
 			cout << "Congrates you won the GAME!" << endl;
 			cout << "The Game has ended. Enter any key to exit";
