@@ -58,15 +58,17 @@ string checkmove() {
 
 void input() {
 	
-	while (correctmove == false) {
-		cout << "Select Move  from " << checkmove() << endl;
-		cin >> playermove;
-		switch (tolower(playermove[0])) {
-		case 'n':case 's':case 'e':case 'w': case 'q':
-			correctmove = true;
-		default:
-			if (correctmove == false) {
-				cout << "invalid move" << endl;
+	while (1) {
+		if (correctmove == false) {
+			cout << "Select Move  from " << checkmove() << endl;
+			cin >> playermove;
+			switch (tolower(playermove[0])) {
+			case 'n':case 's':case 'e':case 'w': case 'q':
+				correctmove = true;
+			default:
+				if (correctmove == false) {
+					cout << "invalid move" << endl;
+				}
 			}
 		}
 	}
@@ -125,7 +127,7 @@ void renderThread(){
 		if (correctmove) {
 			update();
 			render();
-			correctmove = false;
+			
 		}
 }
 
@@ -133,13 +135,15 @@ int main()
 {
 	cout << "Welcome to GridWorld!" << endl;
 	cout << "Valid Commands: N,S,E and W for Directions and Q to quit" << endl;
+	thread t1(input);
+
+	t1.detach();
 	while (GameState) {
-		thread t1(input);
-		thread t2(renderThread);
-		t1.join();
-		t2.join();
-		//update();
-		//render();
+		if (correctmove) {
+			update();
+			render();
+		}
+		correctmove = false;
 
 		if (_map[PlayerPosY][PlayerPosX] == "G") {
 			cout << "Congrates you won the GAME!" << endl;
