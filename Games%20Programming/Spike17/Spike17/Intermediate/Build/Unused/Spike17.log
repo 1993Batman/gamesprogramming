@@ -1,0 +1,8 @@
+﻿  Creating makefile for hot reloading Spike17Editor (game project files are newer)
+  Compiling game modules for hot reload
+  Parsing headers for Spike17Editor
+    Running UnrealHeaderTool "D:\GamesProgrammingGit\Games Programming\Spike17\Spike17\Spike17.uproject" "D:\GamesProgrammingGit\Games Programming\Spike17\Spike17\Intermediate\Build\Win64\Spike17Editor\Development\Spike17Editor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
+  D:/GamesProgrammingGit/Games Programming/Spike17/Spike17/Source/Spike17/VectortCode.h(27) : Unknown function specifier 'CPF_BlueprintCallable'
+Error : Failed to generate code for Spike17Editor - error code: OtherCompilationError (5)
+  UnrealHeaderTool failed for target 'Spike17Editor' (platform: Win64, module info: D:\GamesProgrammingGit\Games Programming\Spike17\Spike17\Intermediate\Build\Win64\Spike17Editor\Development\Spike17Editor.uhtmanifest).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.MakeFile.Targets(37,5): error MSB3075: The command ""D:\Epic Games\4.13\Engine\Build\BatchFiles\Build.bat" Spike17Editor Win64 Development "D:\GamesProgrammingGit\Games Programming\Spike17\Spike17\Spike17.uproject" -waitmutex" exited with code 5. Please verify that you have sufficient rights to run this command.
