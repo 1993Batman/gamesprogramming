@@ -1,0 +1,3 @@
+D:\GamesProgrammingGit\Games Programming\Spike17\Spike17\Source\Spike17\Spike17.Build.cs
+D:\GamesProgrammingGit\Games Programming\Spike17\Spike17\Source\Spike17.Target.cs
+D:\GamesProgrammingGit\Games Programming\Spike17\Spike17\Source\Spike17Editor.Target.cs
