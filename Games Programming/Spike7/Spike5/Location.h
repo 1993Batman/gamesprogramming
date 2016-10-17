@@ -6,13 +6,10 @@
 class Location
 {
 public:
-	Location(string na, string de, vector<Edges> ed, bool ia);
+	Location(string na, string de, vector<Edges> ed);
 	~Location();
 	string getName();
 	string getDec();
-	Edges selectEdge(string n);
-	bool getAmIAt();
-	void setAmIAt(bool t);
 	int getSize();
 	vector<Edges> getEdges();
 private:

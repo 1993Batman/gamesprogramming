@@ -2,7 +2,7 @@
 #include "Player.h"
 
 Player::Player() {
-	inventory = new  vector<Inventory>();
+	inventory = new vector<Inventory>();
 }
 
 Player::~Player() {

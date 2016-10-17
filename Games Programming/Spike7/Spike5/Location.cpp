@@ -2,7 +2,7 @@
 #include "Location.h"
 
 
-Location::Location(string na, string de, vector<Edges> ed, bool ia) {
+Location::Location(string na, string de, vector<Edges> ed) {
 	name = na;
 	desc = de;
 	edges = new vector<Edges>();
@@ -10,7 +10,6 @@ Location::Location(string na, string de, vector<Edges> ed, bool ia) {
 		auto it = edges->begin();
 		edges->insert(it,ed[i]);
 	}
-	isAt = ia;
 }
 
 Location::~Location() {
@@ -26,23 +25,6 @@ string Location::getDec() {
 	return desc;
 }
 
-Edges Location::selectEdge(string n) {
-	for (int i = 0; i < int(edges->size()); i++) {
-		string test = edges->at(i).getName();
-		if (!test.compare(edges->at(i).getName())) {
-			return edges->at(i);
-		}
-	}
-	return edges->at(0);
-}
-
-bool Location::getAmIAt() {
-	return isAt;
-}
-
-void Location::setAmIAt(bool t) {
-	isAt = t;
-}
 
 int Location::getSize() {
 	return edges->size();

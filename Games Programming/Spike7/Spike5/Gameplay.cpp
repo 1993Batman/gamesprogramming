@@ -5,9 +5,9 @@ Gameplay::Gameplay()
 {
 	move = " ";
 	hscore = new HighScore();
-	locations = new vector<Location>();
+	locations = new vector<Location*>();
 	setUpLocations();
-	currLoc = &locations->at(0);
+	currLoc = locations->at(0);
 }
 
 Gameplay::~Gameplay()
@@ -19,10 +19,13 @@ Gameplay::~Gameplay()
 
 void Gameplay::play() {
 	bool inPlay = true;
+	worldSetUp();
+	cout << "Zorkish :: Gameplay" << endl;
+	cout << "----------------------------------------------" << endl;
+	cout << " " << endl;
+	cout << "This is simple and pointless. This is only for testing... But Lets Play Anyway" << endl;
 	while (inPlay) {
 		printGameplay();
-
-
 
 		if (move == "quit") {
 			cout << "Your adventure has ended... You lost The Game!" << endl;
@@ -32,6 +35,100 @@ void Gameplay::play() {
 			hscore->newHighScore(50, "Void World");
 			inPlay = false;
 		}
+		else if (move == "north" || move == "south" || move == "east" || move == "west" || 
+			move == "northwest" || move == "northeast" ||
+			move == "southwest" || move == "southeast") {
+			vector<Edges> posMove = currLoc->getEdges();
+			for (int i = 0; i < int(posMove.size()); i++) {
+				for (int j = 0; j < int(locations->size()); j++) {
+					if (move == posMove.at(i).getPath()) {
+						if (posMove.at(i).getNode() == locations->at(j)->getName()) {
+							currLoc = locations->at(j);
+							cout << posMove.at(i).getDesc() << endl;
+							break;
+						}
+					}
+				}
+			}
+		}
+		else if (move == "rkooutofnowhere") {
+			cout << "You here a rattle... you are scared and don't know what to do" << endl;
+			cout << "You start to get worried and then" << endl;
+			cout << "What do you do?" << endl;
+			cin >> move;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;			
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;			
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;			
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "..." << endl;
+			cout << "Randy Orton comes out of nowhere and you recive a RKO OUT OF NOWHERE and die" << endl;
+			cout << "You have now lost" << endl;
+			cout << "Select any key to continue" << endl;
+			cin >> move;
+			inPlay = false;
+		}
+		else if (move == "look") {
+				vector<Edges> posMove = currLoc->getEdges();
+				cout << "You're not sure on how to Zorkish so you look at you're trusty map and see:";
+				cout << currLoc->getName() << ":" << currLoc->getDec() << endl;
+				cout << "Path:";
+				for (int i = 0; i < int(posMove.size()); i++) {
+					cout << posMove.at(i).getPath() << ",";
+					cout << " "<< endl;
+				}
+		}
 		else {
 			cout << "invalid move" << endl;
 		}
@@ -40,19 +137,21 @@ void Gameplay::play() {
 }
 
 void Gameplay::printGameplay() {
-	cout << "Zorkish :: Gameplay" << endl;
-	cout << "----------------------------------------------" << endl;
-	cout << " " << endl;
-	cout << "This is simple and pointless. This is only for testing... But Lets Play Anyway" << endl;
 	cout << currLoc->getDec() << endl;
-	cout << "You can travel:"<< endl;
+	cout << "You can travel:" << endl;
 	string movement = "";
-	for (int i = 0; i < currLoc->getSize(); i++) {
-		//movement += 
+	vector<Edges> posMove = currLoc->getEdges();
+	for (int i = 0; i < int(posMove.size()); i++) {
+		movement += posMove.at(i).getPath() + ",";
 	}
-
+	cout << movement << endl;
 	cin >> move;
 	transform(move.begin(), move.end(), move.begin(), ::tolower);
+	for (int j = 0; j < int(posMove.size()); j++) {
+		if (move == posMove.at(j).getPath()) {
+			break;
+		}
+	}
 }
 
 void Gameplay::setUpLocations() {
@@ -73,22 +172,55 @@ void Gameplay::setUpLocations() {
 	ve2->insert(ve2->begin()+1, *new Edges("Edge2", "Node3", "northeast", "As you walk you see chicken nuggets"));
 	ve2->insert(ve2->begin()+2, *new Edges("Edge2", "Node1", "south", "You have to go back to get your lunch"));
 
-	ve3->insert(ve3->begin(), *new Edges("Edge3", "Node2", "southwest", "It was a lie! There were no chicken nuggets! You go back"));
+	ve3->insert(ve3->begin(), *new Edges("Edge3", "Node2", "southwest", "It was a lie! There were no chicken nuggets! You need to go back"));
 	ve3->insert(ve3->begin()+1, *new Edges("Edge3", "Node4", "southeast", "The chicken nuggets moved this way"));
 
-	ve4->insert(ve4->begin(), *new Edges("Edge4", "Node3", "southwest", "It was a lie! There were no chicken nuggets! You go back"));
+	ve4->insert(ve4->begin(), *new Edges("Edge4", "Node3", "southwest", "It was a lie! There were no chicken nuggets! You need to go back"));
 
-	ve5->insert(ve5->begin(), *new Edges("Edge5", "Node2", "east", "It was a lie! There were no chicken nuggets! You go back"));
+	ve5->insert(ve5->begin(), *new Edges("Edge5", "Node2", "east", "You travel back and try another path in search for food"));
 
-	Location* l1 = new Location("Node1","Testing go straight please",*ve1,true);
-	Location* l2 = new Location("Node2", "You reach a crossroad and try to see where the delicous food is comming from", *ve2, false);
-	Location* l3 = new Location("Node3", "You follow your sense of smell but you're not sure where the food is", *ve3,false);
-	Location* l4 = new Location("Node4", "It was a lie and you fell bad and you should fell bad", *ve4, false);
-	Location* l5 = new Location("Node5", "Eww you realise the ham sandwich is off and decide to follow a different path", *ve5, false);
+	Location* l1 = new Location("Node1","Testing go straight please",*ve1);
+	Location* l2 = new Location("Node2", "You reach a crossroad and try to see where the delicous food is comming from", *ve2);
+	Location* l3 = new Location("Node3", "You follow your sense of smell but you're not sure where the food is", *ve3);
+	Location* l4 = new Location("Node4", "It was a lie and you feel bad and you should feel bad", *ve4);
+	Location* l5 = new Location("Node5", "Eww you realise the ham sandwich is off and decide to follow a different path", *ve5);
 
-	locations->insert(locations->begin(), *l1);
-	locations->insert(locations->begin()+1, *l2);
-	locations->insert(locations->begin()+2, *l3);
-	locations->insert(locations->begin()+3, *l4);
-	locations->insert(locations->begin()+4, *l5);
+
+	locations->push_back(l1);
+	locations->push_back(l2);
+	locations->push_back(l3);
+	locations->push_back(l4);
+	locations->push_back(l5);
+}
+
+void Gameplay::worldSetUp() {
+	string line, location,desc,edge;
+	vector<Edges>* ve;
+	ve = new vector<Edges>();
+	vector<string> token;
+	ifstream input("World.txt");
+	while (input.good()) {
+		getline(input, line);
+		Utilities::Split(line,':', token);
+
+		if (token[0] == "Location") {
+			location = token[1];
+		}
+		if (token[0] == "Desc") {
+			desc = token[1];
+		}
+		if (token[0] == "Edge") {
+			Edges e = Edges(token[1], token[2], token[3], token[4]);
+			ve->push_back(e);
+		}
+		if (token.empty()) {
+			locations->push_back(new Location(location,desc,*ve));
+		}
+		
+		token.erase(token.begin());
+		
+	}
+	input.close();
+
+	cout << "Great Success! The Game Loaded" << endl;
 }
