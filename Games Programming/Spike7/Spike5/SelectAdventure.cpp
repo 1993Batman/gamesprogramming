@@ -15,7 +15,6 @@ SelectAdventure::~SelectAdventure()
 
 void SelectAdventure::select() {
 	bool inPlay = true;
-	gameplay = new Gameplay();
 	while (inPlay) {
 		printAdventure();
 		switch (move[0]) {
@@ -41,7 +40,6 @@ void SelectAdventure::select() {
 			break;
 		}
 	}
-	delete(gameplay);
 
 }
 

@@ -2,18 +2,14 @@
 #include "Location.h"
 
 
-Location::Location(string na, string de, vector<Edges> ed) {
+Location::Location(string na, string de, vector<Edges*> ed) {
 	name = na;
 	desc = de;
-	edges = new vector<Edges>();
-	for (int i = 0; i < int(ed.size()); i++) {
-		auto it = edges->begin();
-		edges->insert(it,ed[i]);
-	}
+	edges = vector<Edges*>(ed);
 }
 
 Location::~Location() {
-	delete(edges);
+	delete(&edges);
 
 }
 
@@ -27,9 +23,9 @@ string Location::getDec() {
 
 
 int Location::getSize() {
-	return edges->size();
+	return edges.size();
 }
 
-vector<Edges> Location::getEdges() {
-	return *edges;
+vector<Edges*> Location::getEdges() {
+	return edges;
 }

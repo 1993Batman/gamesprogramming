@@ -13,7 +13,7 @@ public:
 private:
 	string move;
 	HighScore* hscore;
-	vector<Location*> *locations;
+	vector<Location*> locations;
 	Location* currLoc;
 };
 
