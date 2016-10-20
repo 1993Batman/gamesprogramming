@@ -1,6 +1,6 @@
 #pragma once
-#include "HighScore.h"
 #include "Location.h"
+#include "CommandManager.h"
 class Gameplay
 {
 public:
@@ -8,12 +8,11 @@ public:
 	~Gameplay();
 	void play();
 	void printGameplay();
-	void setUpLocations();
 	void worldSetUp();
 private:
 	string move;
-	HighScore* hscore;
 	vector<Location*> locations;
 	Location* currLoc;
+	CommandManager* cm;
 };
 

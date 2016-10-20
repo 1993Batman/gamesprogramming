@@ -19,6 +19,7 @@ void SelectAdventure::select() {
 		printAdventure();
 		switch (move[0]) {
 		case '1':
+			cin.clear();
 			gameplay->play();
 			inPlay = false;
 			break;

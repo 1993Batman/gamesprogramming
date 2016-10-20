@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="About.h" />
+    <ClInclude Include="CommandManager.h" />
     <ClInclude Include="Edges.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="Gameplay.h" />
@@ -154,6 +155,9 @@
     <ClInclude Include="HighScore.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Location.h" />
+    <ClInclude Include="LookCommand.h" />
+    <ClInclude Include="MoveCommand.h" />
+    <ClInclude Include="MovementCheck.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SelectAdventure.h" />
     <ClInclude Include="stdafx.h" />
@@ -161,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="About.cpp" />
+    <ClCompile Include="CommandManager.cpp" />
     <ClCompile Include="Edges.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="Gameplay.cpp" />
@@ -168,6 +173,9 @@
     <ClCompile Include="HighScore.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Location.cpp" />
+    <ClCompile Include="LookCommand.cpp" />
+    <ClCompile Include="MoveCommand.cpp" />
+    <ClCompile Include="MovementCheck.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SelectAdventure.cpp" />
     <ClCompile Include="Spike5.cpp" />
