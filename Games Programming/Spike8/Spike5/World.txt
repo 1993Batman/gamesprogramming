@@ -1,23 +1,38 @@
 Location:Node1
 Desc:Testing go north please
 Edge:Edge1:Node2:north:You travel north and realise youy forgot your lunch
-
+Entity:Null:Null:0
+Inventory:Null:Null:Null 
+Weapon:Null:Null:Null:0
+End
 Location:Node2
 Desc:You reach a crossroad and try to see where the delicous food is comming from
 Edge:Edge2:Node5:west:You grow hungery and see a ham sandwich
 Edge:Edge2:Node3:northeast:As you walk you see chicken nuggets
 Edge:Edge2:Node1:south:You have to go back to get your lunch
-
+Entity:Null:Null:0
+Inventory:Null:Null:Null 
+Weapon:Null:Null:Null:0
+End
 Location:Node3
 Desc:You follow your sense of smell but you're not sure where the food is
 Edge:Edge3:Node2:southwest:It was a lie! There were no chicken nuggets! You need to go back
 Edge:Edge3:Node4:southeast:The chicken nuggets moved this way
-
+Entity:Null:Null:0
+Inventory:Null:Null:Null 
+Weapon:Null:Null:Null:0
+End
 Location:Node4
 Desc:It was a lie and you feel bad and you should feel bad
 Edge:Edge4:Node3:southwest:It was a lie! There were no chicken nuggets! You need to go back
-
+Entity:Chicken Nugget Monster: Give me all of your NUGGETS!!!!!: 15
+Inventory:Chicken Nuggets:Misc:Chicken Nuggets are like my Family 
+Weapon:Null:Null:Null:0
+End
 Location:Node5
 Desc:Eww you realise the ham sandwich is off and decide to follow a different path
 Edge:Edge5:Node2:east:You travel back and try another path in search for food
+Entity:Null:Null:0
+Inventory:Null:Null:Null 
+Weapon:Nexcalibar:Sword:Excalibur's weeker cousin:2
 End

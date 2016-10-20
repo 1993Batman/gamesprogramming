@@ -2,6 +2,7 @@
 class Inventory
 {
 public:
+	Inventory();
 	Inventory(string name, string type, string desc);
 	~Inventory();
 	string ReturnName();

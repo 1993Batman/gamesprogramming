@@ -75,15 +75,14 @@ void Gameplay::worldSetUp() {
 	vector<Edges*> ve;
 	ve = vector<Edges*>();
 	vector<string> token;
+	Inventory* i = new Inventory("Null", "Null", "Null");
+	Weapon* w = new Weapon("Null", "Null", "Null", 0);
+	Entity* e = new Entity("Null", "Null", 0);
 	ifstream input("World.txt");
 	while (getline(input, line)) {
 		
 		Utilities::Split(line,':', token);
-		if (token.empty()|| token[0] == "End") {
-			locations.push_back(new Location(location, desc, ve));
-			ve.clear();
-		}
-		else if (token[0] == "Location") {
+		if (token[0] == "Location") {
 			location = token[1];
 		}
 		else if (token[0] == "Desc") {
@@ -93,6 +92,30 @@ void Gameplay::worldSetUp() {
 			Edges* e = new Edges(token[1], token[2], token[3], token[4]);
 			ve.push_back(e);
 		}
+
+		if(token[0] == "Entity")
+		{
+			e = new Entity(token[1], token[2], stoi(token[3]));
+		}
+		 if (token[0] == "Weapon")
+		{
+			w = new Weapon(token[1], token[2], token[3], stoi(token[4]));
+
+		 }
+		 if (token[0] == "Inventory")
+		{
+			i = new Inventory(token[1], token[2], token[3]);
+
+		 }
+
+		if (token[0] == "End") {
+			locations.push_back(new Location(location, desc, ve, *e, *i, *w));
+			ve.clear();
+			i = new Inventory("Null", "Null", "Null");
+			w = new Weapon("Null", "Null", "Null", 0);
+			e = new Entity("Null", "Null", 0);
+		}
+
 		token.clear();
 	}
 	input.close();

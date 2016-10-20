@@ -37,6 +37,15 @@ bool LookCommand::checkCommand(string m, Location* l) {
 					if (ss[1] == e.at(j)->getPath()) {
 						cout << "You don't Zorkish well so want to see were the path leads" << endl;
 						cout << "Path: " << e.at(j)->getDesc() << endl;
+						if (l->getInventory().ReturnName().compare("Null")) {
+							cout << "But, I think there is an Item here at this location"<< endl;
+						}
+						if (l->getEntity().getName().compare("Null")) {
+							cout << "But, I think there is an Entity at this location" << endl;
+						}
+						if (l->getWeapon().returnName().compare("Null")) {
+							cout << "But, I think there is an Weapon here at this location" << endl;
+						}
 						return true;
 					}
 				}
@@ -50,10 +59,10 @@ string LookCommand::checkMovement(string m) {
 	if (m == "north" || m == "n") {
 		return "north";
 	}
-	else if (m == "south" || m == "n") {
+	else if (m == "south" || m == "s") {
 		return "south";
 	}
-	else if (m == "east" || m == "n") {
+	else if (m == "east" || m == "e") {
 		return "east";
 	}
 	else if (m == "west" || m == "w") {

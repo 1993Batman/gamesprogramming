@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "Inventory.h"
 
+Inventory::Inventory()
+{
+}
+
 Inventory::Inventory(string name, string type, string desc) {
 	iName = new string(name);
 	iType = new string(type);
