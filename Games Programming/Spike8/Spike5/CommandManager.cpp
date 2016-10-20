@@ -105,10 +105,23 @@ string CommandManager::checkCommand(string m, Location* l) {
 		return "false";
 		
 	}
-	else if (m == "highscore") {
+	if (m == "highscore") {
 		hscore->newHighScore(50, "Void World");
 		return "false";
 	}
 
+
+	if (m == "look at" || m == "look in") {
+		return "Sorry " + m + " isn't implemented yet \n";
+	}
+	if (m == "open" || m == "close") {
+		return "Sorry " + m + " isn't implemented yet \n";
+	}
+	if (m == "attack") {
+		return "Sorry " + m + " isn't implemented yet \n";
+	}
+	if (m == "take" || m == "put" || m == "drop") {
+		return "Sorry " + m + " isn't implemented yet \n";
+	}
 	return "I'm sorry you forgot how to Zorkish: \n";
 };
