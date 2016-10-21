@@ -1,0 +1,3 @@
+Once opened in Unreal 4.13. To access Spike 16's sence you need to click
+-Content
+-Minimal_Default
