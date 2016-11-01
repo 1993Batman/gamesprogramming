@@ -37,14 +37,11 @@ bool LookCommand::checkCommand(string m, Location* l) {
 					if (ss[1] == e.at(j)->getPath()) {
 						cout << "You don't Zorkish well so want to see were the path leads" << endl;
 						cout << "Path: " << e.at(j)->getDesc() << endl;
-						if (l->getInventory().ReturnName().compare("Null")) {
-							cout << "But, I think there is an Item here at this location"<< endl;
+						if (l->getItem().ReturnName().compare("Null")) {
+							cout << "But, I think there is an Item here at this location. It looks like a "<< l->getItem().ReturnName() <<endl;
 						}
 						if (l->getEntity().getName().compare("Null")) {
-							cout << "But, I think there is an Entity at this location" << endl;
-						}
-						if (l->getWeapon().returnName().compare("Null")) {
-							cout << "But, I think there is an Weapon here at this location" << endl;
+							cout << "But, I think there is an Entity at this location . It looks like the "<< l->getEntity().getName() << endl;
 						}
 						return true;
 					}

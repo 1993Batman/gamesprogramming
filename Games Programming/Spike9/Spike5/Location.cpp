@@ -2,20 +2,20 @@
 #include "Location.h"
 
 
-Location::Location(string na, string de, vector<Edges*> ed, Entity e, Inventory i, Weapon w) {
+Location::Location(string na, string de, vector<Edges*> ed, Entity e, Item i) {
 	name = na;
 	desc = de;
 	edges = vector<Edges*>(ed);
 	entity = new Entity(e);
-	item = new Inventory(i);
-	wep = new Weapon(w);
+	item = new Item(i);
+
 }
 
 Location::~Location() {
 	delete(&edges);
 	delete(entity);
 	delete(item);
-	delete(wep);
+
 
 }
 
@@ -39,9 +39,9 @@ vector<Edges*> Location::getEdges() {
 Entity Location::getEntity() {
 	return *entity;
 }
-Inventory Location::getInventory() {
+Item Location::getItem() {
 	return *item;
 }
-Weapon Location::getWeapon() {
-	return *wep;
+void Location::setItem(Item* i) {
+	item = i;
 }

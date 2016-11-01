@@ -2,8 +2,8 @@
 #include "Location.h"
 #include "CommandManager.h"
 #include "Entity.h"
-#include "Weapon.h"
-#include "Inventory.h"
+#include "Item.h"
+#include "Player.h"
 class Gameplay
 {
 public:
@@ -17,5 +17,6 @@ private:
 	vector<Location*> locations;
 	Location* currLoc;
 	CommandManager* cm;
+	Player* player;
 };
 

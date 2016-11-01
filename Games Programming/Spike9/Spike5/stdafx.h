@@ -15,7 +15,6 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-
 using namespace std;
 
 namespace Utilities

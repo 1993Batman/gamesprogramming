@@ -5,14 +5,18 @@ CommandManager::CommandManager() {
 	lc = new LookCommand();
 	mc = new MoveCommand();
 	hscore = new HighScore();
+	occ = new OpenCloseCommand();
+	ic = new ItemCommand();
 }
 
 CommandManager::~CommandManager() {
 	delete(lc);
 	delete(mc);
+	delete(occ);
+	delete(ic);
 }
 
-string CommandManager::checkCommand(string m, Location* l) {
+string CommandManager::checkCommand(string m, Location* l, vector<Item> ve) {
 	vector<Edges*> e = vector<Edges*>(l->getEdges());
 	
 
@@ -110,18 +114,21 @@ string CommandManager::checkCommand(string m, Location* l) {
 		return "false";
 	}
 
+	check = occ->checkCommand(m);
 
-	if (m == "look at" || m == "look in") {
-		return "Sorry " + m + " isn't implemented yet \n";
+	if (check == "open bag" || check == "close bag") {
+		return check;
 	}
-	if (m == "open" || m == "close") {
-		return "Sorry " + m + " isn't implemented yet \n";
+
+	check = ic->checkCommand(m,ve,l->getItem());
+	if (check == "add item" || check == "look in bag" || check == " ") {
+		return check;
 	}
-	if (m == "attack") {
-		return "Sorry " + m + " isn't implemented yet \n";
+	vector<string> ss;
+	Utilities::Split(check, ' ', ss);
+	if (ss[0] == "remove" && int(ss.size()) > 1) {
+		return "remove " + ss[1];
 	}
-	if (m == "take" || m == "put" || m == "drop") {
-		return "Sorry " + m + " isn't implemented yet \n";
-	}
+
 	return "I'm sorry you forgot how to Zorkish: \n";
 };

@@ -7,6 +7,7 @@ Gameplay::Gameplay()
 	locations = vector<Location*>();
 	worldSetUp();
 	cm = new CommandManager();
+	player = new Player();
 }
 
 Gameplay::~Gameplay()
@@ -26,7 +27,8 @@ void Gameplay::play() {
 	cout << "This is simple and pointless. This is only for testing... But Lets Play Anyway" << endl;
 	while (inPlay) {
 		printGameplay();
-
+		vector<string> ss;
+		Utilities::Split(move, ' ', ss);
 		if (move == "false") {
 			inPlay = false;
 		}
@@ -46,6 +48,46 @@ void Gameplay::play() {
 				}
 			}
 		} else if( move == " "){}
+		else if (move == "open bag") {
+			if (player->getBag()->openCloseBagCheck() == true) {
+				player->getBag()->openCloseBag();
+				cout << "Bag is now open" << endl;
+			}
+			else {
+				cout << "Bag is already open" << endl;
+			}
+		}
+		else if (move == "close bag") {
+			if (player->getBag()->openCloseBagCheck() == false) {
+				player->getBag()->openCloseBag();
+				cout << "Bag is now closed" << endl;
+			}
+			else {
+				cout << "Bag is already closed" << endl;
+			}
+		}
+		else if(move == "add item"){
+			if (player->getBag()->openCloseBagCheck() == false) {
+				player->AddItem(currLoc->getItem());
+				currLoc->setItem(new Item("Null", "Null", "Null"));
+				cout << "You have succesfully picked up the item" << endl;
+			}
+			else {
+				cout << "Your bag is closed" << endl;
+			}
+		}
+		else if (ss[0] == "remove") {
+			for (int i = 0; i < int(player->getBag()->bag.size()); i++) {
+				if (!player->getBag()->bag.at(i).ReturnName().compare(ss[1])) {
+					player->RemoveItem(player->getBag()->bag.at(i));
+					cout << "You have succesfully removed the item forever! you can't get it back..." << endl;
+					cout << "I'm sorry but it's the unwritten rule of Zorkish" << endl;
+				}
+			}
+		}
+		else if (move == "look in bag") {
+			player->getBag()->printItemsInBag();
+		}
 		else {
 			cout << move;
 		}
@@ -65,7 +107,7 @@ void Gameplay::printGameplay() {
 	cout << movement << endl;
 	getline(cin, move);
 	transform(move.begin(), move.end(), move.begin(), ::tolower);
-	move = cm->checkCommand(move, currLoc);
+	move = cm->checkCommand(move, currLoc, player->getBag()->bag);
 }
 
 
@@ -75,8 +117,8 @@ void Gameplay::worldSetUp() {
 	vector<Edges*> ve;
 	ve = vector<Edges*>();
 	vector<string> token;
-	Inventory* i = new Inventory("Null", "Null", "Null");
-	Weapon* w = new Weapon("Null", "Null", "Null", 0);
+	Item* i = new Item("Null", "Null", "Null");
+
 	Entity* e = new Entity("Null", "Null", 0);
 	ifstream input("World.txt");
 	while (getline(input, line)) {
@@ -99,20 +141,23 @@ void Gameplay::worldSetUp() {
 		}
 		 if (token[0] == "Weapon")
 		{
-			w = new Weapon(token[1], token[2], token[3], stoi(token[4]));
-
+			i = new Item(token[1], token[2], token[3]);
+			int j = atoi(token[4].c_str());
+			if (j > 0) {
+				i->getDamage(j);
+			}
+			
 		 }
-		 if (token[0] == "Inventory")
+		 if (token[0] == "Item")
 		{
-			i = new Inventory(token[1], token[2], token[3]);
+			i = new Item(token[1], token[2], token[3]);
 
 		 }
 
 		if (token[0] == "End") {
-			locations.push_back(new Location(location, desc, ve, *e, *i, *w));
+			locations.push_back(new Location(location, desc, ve, *e, *i));
 			ve.clear();
-			i = new Inventory("Null", "Null", "Null");
-			w = new Weapon("Null", "Null", "Null", 0);
+			i = new Item("Null", "Null", "Null");
 			e = new Entity("Null", "Null", 0);
 		}
 
