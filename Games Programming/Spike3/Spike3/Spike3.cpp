@@ -307,7 +307,7 @@ int main(int argc, char* argv[]){
 
 	//Error 9: Doesn't delete L when you finish the program
 	L = NULL;
-	delete L;
+	delete(L);
 
 
 
