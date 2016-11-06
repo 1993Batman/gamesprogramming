@@ -11,7 +11,7 @@ int main()
 	controller = new GameController();
 	
 	controller->mainMenu();
-
+	delete(controller);
     return 0;
 }
 

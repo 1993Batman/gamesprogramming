@@ -8,19 +8,21 @@ Gameplay::Gameplay()
 	worldSetUp();
 	cm = new CommandManager();
 	player = new Player();
+	bb = new MessageHandler();
 }
 
 Gameplay::~Gameplay()
 {
 	delete(&locations);
-	delete(currLoc);
 	delete(cm);
+	delete(player);
+	delete(bb);
 }
 
 void Gameplay::play() {
 	bool inPlay = true;
 	cin.ignore();
-	currLoc = locations.at(0);
+	currLoc = 0;
 	cout << "Zorkish :: Gameplay" << endl;
 	cout << "----------------------------------------------" << endl;
 	cout << " " << endl;
@@ -31,23 +33,35 @@ void Gameplay::play() {
 		Utilities::Split(move, ' ', ss);
 		if (move == "false") {
 			inPlay = false;
-		}
-		else if (move == "north" || move == "south" || move == "east" || move == "west" || 
-			move == "northwest" || move == "northeast" ||
-			move == "southwest" || move == "southeast") {
-			vector<Edges*> posMove = currLoc->getEdges();
-			for (int i = 0; i < int(posMove.size()); i++) {
-				for (int j = 0; j < int(locations.size()); j++) {
-					if (move == posMove.at(i)->getPath()) {
-						if (posMove.at(i)->getNode() == locations.at(j)->getName()) {
-							
-							
-							currLoc = locations.at(j);
-							cout << posMove.at(i)->getDesc() << endl;
-							break;
-						}
+		}else if(bb->MessagesExist()){
+			Message* temp;
+			temp = bb->CheckMessage(locations.at(currLoc)->getName());
+			vector<string> ss2;
+			Utilities::Split(locations.at(currLoc)->getMessage(bb->CheckMessage(locations.at(currLoc)->getName())), ' ', ss2);
+			
+			if (ss2[0] == "move") {
+				vector<string> ss3;
+				Utilities::Split(ss2[1], '-', ss3);
+				currLoc = atoi(ss3[1].c_str()) - 1;
+				bb->ClearMessage(temp);
+				if (locations.at(currLoc)->getMessRes() == true) {
+					player->returnHC().Damage(locations.at(currLoc)->returnDC().Attack());
+					cout << "You trip on some spikes and hurt yourself. You're now at " << player->returnHC().GetHealth() << endl;
+				}
+			}
+			if (ss2[0] == "node" && ss[1] == "all") {
+				for (int i = 0; i < int(locations.size()); i++) {
+					if (locations.at(i)->getMessRes() == false) {
+						locations.at(i)->setMessRes(true);
+						cout << locations.at(i)->returnDC().GetDamage() << endl;
 					}
 				}
+				cout << "You hear a noise and proceed with caution" << endl;
+			}
+			
+			bb->ClearMessage(temp);
+			if (ss[0] == "attack") {
+
 			}
 		} else if( move == " "){}
 		else if (move == "open bag") {
@@ -70,8 +84,8 @@ void Gameplay::play() {
 		}
 		else if(move == "add item"){
 			if (player->getBag()->openCloseBagCheck() == false) {
-				player->AddItem(currLoc->getItem());
-				currLoc->setItem(new Item("Null", "Null", "Null"));
+				player->AddItem(locations.at(currLoc)->getItem());
+				locations.at(currLoc)->setItem(new Item("Null", "Null", "Null"));
 				cout << "You have succesfully picked up the item" << endl;
 			}
 			else {
@@ -97,29 +111,40 @@ void Gameplay::play() {
 			else if (&player->getBag()->bag.at(0).returnDC() == nullptr) {
 				cout << "You item doesnt have any damage conponent attached to it" << endl;
 			}
-			currLoc->getEntity().beenAttacked(player->getBag()->bag.at(0).returnDC().Attack());
-			currLoc->getEntity().printInfo();
+			locations.at(currLoc)->getEntity().beenAttacked(player->getBag()->bag.at(0).returnDC().Attack());
+			locations.at(currLoc)->getEntity().printInfo();
 		}
 		else {
 			cout << move;
 		}
 		
+
 	}
 }
 
 void Gameplay::printGameplay() {
-	
-	cout << currLoc->getDec() << endl;
+
+	cout << locations.at(currLoc)->getDec() << endl;
 	cout << "You can travel:" << endl;
 	string movement = "";
-	vector<Edges*> posMove = currLoc->getEdges();
+	vector<Edges*> posMove = locations.at(currLoc)->getEdges();
 	for (int i = 0; i < int(posMove.size()); i++) {
 		movement += posMove.at(i)->getPath() + ",";
 	}
 	cout << movement << endl;
 	getline(cin, move);
 	transform(move.begin(), move.end(), move.begin(), ::tolower);
-	move = cm->checkCommand(move, currLoc, player->getBag()->bag);
+	move = cm->checkCommand(move, locations.at(currLoc), player->getBag()->bag);
+	vector<string> ss;
+	Utilities::Split(move, ' ', ss);
+	if (ss[0] == "move") {
+		bb->CreateMessage(new Message(ss[1], ss[0], locations.at(currLoc)->getName()));
+	}
+	if (move == "have a nice fall") {
+		bb->CreateMessage(new Message("node all", "have a nice fall", locations.at(currLoc)->getName()));
+	}
+	
+
 }
 
 
@@ -130,7 +155,6 @@ void Gameplay::worldSetUp() {
 	ve = vector<Edges*>();
 	vector<string> token;
 	Item* i = new Item("Null", "Null", "Null");
-
 	Entity* e = new Entity("Null", "Null");
 	ifstream input("World.txt");
 	while (getline(input, line)) {
@@ -160,10 +184,11 @@ void Gameplay::worldSetUp() {
 		 }
 
 		if (token[0] == "End") {
-			locations.push_back(new Location(location, desc, ve, *e, *i));
+			locations.insert( locations.begin(),new Location(location, desc, ve, *e, *i));
 			ve.clear();
 			i = new Item("Null", "Null", "Null");
 			e = new Entity("Null", "Null");
+			locations.at(0)->GetDamage(1);
 		}
 
 		token.clear();

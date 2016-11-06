@@ -23,6 +23,7 @@ Bag* Player::getBag() {
 	return bag;
 }
 
-void Player::beenAttacked(double dam) {
-	hc->Damage(dam);
+
+HealthComponent Player::returnHC() {
+	return *hc;
 }

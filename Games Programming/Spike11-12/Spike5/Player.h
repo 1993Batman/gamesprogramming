@@ -12,7 +12,7 @@ public:
 	void AddItem(Item item);
 	Item RemoveItem(Item item);
 	Bag* getBag();
-	void beenAttacked(double dam);
+	HealthComponent returnHC();
 private:
 	Bag* bag;
 	HealthComponent* hc;

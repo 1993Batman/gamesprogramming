@@ -101,7 +101,7 @@ string CommandManager::checkCommand(string m, Location* l, vector<Item> ve) {
 	if (check != "No") {
 		for (int i = 0; i < int(e.size()); i++) {
 			if (e.at(i)->getPath() == check) {
-				return check;
+				return "move " + e.at(i)->getNode();
 			}
 		}
 	}
@@ -134,6 +134,9 @@ string CommandManager::checkCommand(string m, Location* l, vector<Item> ve) {
 	check = ac->checkCommand(m,l);
 	Utilities::Split(check, ' ', ss);
 	if (ss[0] == "attack" && int(ss.size()) > 1) {
+		return check;
+	}
+	if (check == "have a nice fall") {
 		return check;
 	}
 	return "I'm sorry you forgot how to Zorkish: \n";

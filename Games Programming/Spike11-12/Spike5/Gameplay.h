@@ -4,6 +4,9 @@
 #include "Entity.h"
 #include "Item.h"
 #include "Player.h"
+#include "MessageHandler.h"
+#include "Message.h"
+
 class Gameplay
 {
 public:
@@ -15,8 +18,9 @@ public:
 private:
 	string move;
 	vector<Location*> locations;
-	Location* currLoc;
+	int currLoc;
 	CommandManager* cm;
 	Player* player;
+	MessageHandler* bb;
 };
 

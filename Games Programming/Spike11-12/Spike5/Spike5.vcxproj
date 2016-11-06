@@ -162,6 +162,9 @@
     <ClInclude Include="ItemCommand.h" />
     <ClInclude Include="Location.h" />
     <ClInclude Include="LookCommand.h" />
+    <ClInclude Include="Message.h" />
+    <ClInclude Include="MessageHandler.h" />
+    <ClInclude Include="MessageTypes.h" />
     <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="MovementCheck.h" />
     <ClInclude Include="OpenCloseCommand.h" />
@@ -187,6 +190,8 @@
     <ClCompile Include="ItemCommand.cpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="LookCommand.cpp" />
+    <ClCompile Include="Message.cpp" />
+    <ClCompile Include="MessageHandler.cpp" />
     <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="MovementCheck.cpp" />
     <ClCompile Include="OpenCloseCommand.cpp" />

@@ -22,15 +22,21 @@ void SelectAdventure::select() {
 			cin.clear();
 			gameplay->play();
 			inPlay = false;
+			delete gameplay;
+			gameplay = new Gameplay();
 			break;
 		case '2':
 			gameplay->play();
 			inPlay = false;
 			break;
+			delete gameplay;
+			gameplay = new Gameplay();
 		case '3':
 			gameplay->play();
 			inPlay = false;
 			break;
+			delete gameplay;
+			gameplay = new Gameplay();
 		default:
 			if (move == "1" || move == "2" || move == "3") {
 

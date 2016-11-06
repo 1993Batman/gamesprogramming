@@ -87,6 +87,18 @@
     <ClInclude Include="DamageComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AttackCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -153,6 +165,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DamageComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Message.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
